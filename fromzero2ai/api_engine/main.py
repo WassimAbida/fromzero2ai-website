@@ -12,9 +12,7 @@ from fromzero2ai.api_engine.routes import example_route, health_status
 from fromzero2ai.api_engine.errors import handlers
 
 
-
-
-tags_metadata: List[Dict[str, Any]] = [  
+tags_metadata: List[Dict[str, Any]] = [
     {
         "name": "Demo API",
         "description": "Execute mathematical process using API requests",
@@ -24,6 +22,7 @@ tags_metadata: List[Dict[str, Any]] = [
         },
     },
 ]
+
 
 def create_app() -> FastAPI:
     """FASTAPI Appliction factory"""
@@ -55,7 +54,6 @@ def custom_openapi():
     )
     app.openapi_schema = openapi_schema
     return app.openapi_schema
-
 
 
 app = create_app()

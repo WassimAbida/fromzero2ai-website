@@ -20,7 +20,6 @@ class ErrorResponseContent:
 class ErrorResponse(JSONResponse):
     """Error response json object."""
 
-    def __init__(self, *args, error_content: ErrorResponseContent, **kwargs): 
+    def __init__(self, *args, error_content: ErrorResponseContent, **kwargs):
         """Define the json error response"""
-        super().__init__(*args, content=error_content.content, **kwargs) 
-        
+        super().__init__(*args, content=error_content.content, **kwargs)

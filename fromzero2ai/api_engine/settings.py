@@ -11,9 +11,11 @@ class ApiSettings(BaseSettings):
 
     Use the env variables to define the non default ones.
     """
-    class Config:
-        env_file = ".env"
 
+    class Config:
+        """Config class."""
+
+        env_file = ".env"
 
     API_NAME: str
     RESPONSE_TIMEOUT: int
@@ -31,10 +33,7 @@ class ApiSettings(BaseSettings):
         """
         if isinstance(value, str):
             return value
-        print("xxxxxx", values)
         api_root_url = os.path.join("/", values.get("API_NAME"))  # type: ignore
-
-        print(api_root_url)
         return api_root_url
 
     @validator("API_SWAGGER_TITLE", pre=True)
