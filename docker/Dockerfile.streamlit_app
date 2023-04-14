@@ -1,0 +1,42 @@
+# app/Dockerfile
+
+FROM python:3.9-slim
+ARG PROJECT_NAME=fromzero2ai
+WORKDIR /${PROJECT_NAME}
+
+RUN apt-get update && apt-get install -y \
+    build-essential \
+    curl \
+    software-properties-common \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+#RUN git clone https://github.com/streamlit/streamlit-example.git .
+
+# Virtual env configuration
+ENV VIRTUAL_ENV=./venv
+RUN python -m venv $VIRTUAL_ENV
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+
+RUN pip install poetry==1.3.1
+
+COPY ${PROJECT_NAME}/ /${PROJECT_NAME}/${PROJECT_NAME}/
+COPY poetry.lock pyproject.toml launch_app.sh /${PROJECT_NAME}/
+RUN chmod -R 777 /${PROJECT_NAME}/launch_app.sh
+
+# RUN pip3 install -r requirements.txt
+# Install project
+RUN poetry config virtualenvs.create false \
+&& poetry config virtualenvs.in-project false \
+&& poetry install 
+
+
+RUN groupadd --gid 1300 agent && useradd -m --gid agent --uid 1300 agent
+USER agent
+# Virtual env configuration
+ENV VIRTUAL_ENV=./venv
+ENV PATH="$VIRTUAL_ENV/bin:$PATH"
+EXPOSE 8501
+HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
+
+CMD ["./launch_app.sh"]
