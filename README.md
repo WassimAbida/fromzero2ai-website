@@ -1,7 +1,7 @@
 # fromzero2ai-website
 website for fromzero2ai
 
-http://127.0.0.1:9000/fromzero2ai/documentation
+
 
 
 ## Local dockerfile build
@@ -11,8 +11,15 @@ http://127.0.0.1:9000/fromzero2ai/documentation
 ```bash
 docker run --env-file .env -it -p 9000:8080 engine
 
->http://0.0.0.0:9000/fromzero2ai/documentation
+docker composer build
+docker composer up
+
+> http://0.0.0.0:9000/fromzero2ai/documentation
+> http://0.0.0.0:8501/
+
 ```
+
+
 
 
 ## .env example content
@@ -21,5 +28,6 @@ docker run --env-file .env -it -p 9000:8080 engine
 API_NAME=DemoAPI
 RESPONSE_TIMEOUT=60
 API_ROOT_URL=/fromzero2ai
+API_SWAGGER_TITLE=fromzero2ai
 
 ```

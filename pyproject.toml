@@ -11,7 +11,7 @@ secondary = false
 default = true
 
 [tool.poetry.dependencies]
-python = ">=3.9,<3.11"
+python = ">=3.9,<3.9.7 || >3.9.7,<3.11"
 jsonpath-ng = "^1.4.3"
 requests = "^2.28.1"
 fire = "^0.4.0"
@@ -24,6 +24,8 @@ seaborn = "^0.12.2"
 fastapi = "^0.95.0"
 uvicorn = "^0.21.1"
 python-dotenv = "^1.0.0"
+streamlit = "^1.21.0"
+watchdog = "^3.0.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^7.1.3"
