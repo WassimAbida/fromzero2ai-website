@@ -8,7 +8,7 @@ from typing import Dict, List, Any
 
 from fromzero2ai.api_engine import __version__
 from fromzero2ai.api_engine.settings import settings
-from fromzero2ai.api_engine.routes import example_route, health_status
+from fromzero2ai.api_engine.routes import example_route, health_status, addition_route
 from fromzero2ai.api_engine.errors import handlers
 
 
@@ -40,6 +40,7 @@ def create_app() -> FastAPI:
     )
     current_app.include_router(example_route.router)
     current_app.include_router(health_status.router)
+    current_app.include_router(addition_route.router)
     return current_app
 
 

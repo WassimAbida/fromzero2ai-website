@@ -15,7 +15,6 @@ RUN apt-get install -y \
 
 WORKDIR /${PROJECT_NAME}
 
-# RUN python3 -m pip install --upgrade pip
 # Virtual env configuration
 ENV VIRTUAL_ENV=./venv
 RUN python -m venv $VIRTUAL_ENV
@@ -27,9 +26,6 @@ COPY ${PROJECT_NAME}/ /${PROJECT_NAME}/${PROJECT_NAME}/
 COPY poetry.lock pyproject.toml launch_api.sh /${PROJECT_NAME}/
 
 RUN chmod -R 777 /${PROJECT_NAME}/launch_api.sh
-
-# RUN poetry export -f requirements.txt --output requirements.txt --without-hashes --without-urls
-# RUN pip install -r requirements.txt  --target /${PROJECT_NAME}/deps
 
 # Install project
 RUN poetry config virtualenvs.create false \

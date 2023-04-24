@@ -11,8 +11,6 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-#RUN git clone https://github.com/streamlit/streamlit-example.git .
-
 # Virtual env configuration
 ENV VIRTUAL_ENV=./venv
 RUN python -m venv $VIRTUAL_ENV
@@ -24,7 +22,6 @@ COPY ${PROJECT_NAME}/ /${PROJECT_NAME}/${PROJECT_NAME}/
 COPY poetry.lock pyproject.toml launch_app.sh /${PROJECT_NAME}/
 RUN chmod -R 777 /${PROJECT_NAME}/launch_app.sh
 
-# RUN pip3 install -r requirements.txt
 # Install project
 RUN poetry config virtualenvs.create false \
 && poetry config virtualenvs.in-project false \

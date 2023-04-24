@@ -15,7 +15,7 @@ class ApiSettings(BaseSettings):
     class Config:
         """Config class."""
 
-        env_file = ".env"
+        env_file = "api.env"
 
     API_NAME: str
     RESPONSE_TIMEOUT: int
