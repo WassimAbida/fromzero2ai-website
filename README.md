@@ -35,19 +35,21 @@ Streamlit Application is accessible using [http://0.0.0.0:8501/](http://0.0.0.0:
 ## Using API through curl
 
 ```bash
+--> Using Parameters layer
 curl -X 'POST' \
-     'http://localhost:8000/soyhuce_tech_challenge_api/v1/inference/sentiment_analysis_body' \
-     -H 'accept: application/json' \
-     -H 'Content-Type: application/json' \
-     -d '{
-     "sentence": "this is a bad example"
+  'http://0.0.0.0:9000/fromzero2ai/addition?a=44&b=33' \
+  -H 'accept: application/json'
+
+--> Using Pydantic layer
+curl -X 'POST' \
+  'http://0.0.0.0:9000/fromzero2ai/multiplication' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "a": 5,
+  "b": 6
 }'
 
---> Expected output: 
-{
-  "sentiment": "Negative",
-  "confidence": "0.98"
-}
+--> Expected output 
+{"result": 30}
 ```
-
-
